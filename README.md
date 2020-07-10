@@ -13,20 +13,22 @@
 
 
 ## Lets go back to your fruits express app!
-In `student_examples` you will have a copy of the fruits app we started creating thigs week.
+In `student_examples` you will have a copy of the fruits app we started creating earlier this week.
 
-Today, we will be adding Mongoose to our app, so that we can make our fruit data persist!
+Today, we will be adding Mongoose to our app so that we can make our fruit data persist!
 
 
 ## Connect Express to Mongo
 
 1. `npm i mongoose`
 
-Whenever we are developing a website or application, we always wanted practice a separation of concerns. 
+Whenever we are developing a website or application, we always want to practice [separation of concerns](https://deviq.com/separation-of-concerns/). 
 
-When we separated out our files into a `models` and `controllers` directory we were separating the various functionality of our application into folders that specify what they do. 
+When we separated out our files into a `models` and a `controllers` directory we were separating the various functionality of our application into folders that specify what they do. 
 
-Lets take our mongoose connection and place it in a folder called db.
+We are going to keep practicing these good habits.
+
+Lets take our mongoose connection and place it in a folder called `db`.
 
 1. Create a `db` directory
 1. Create a `connection.js` file
@@ -40,7 +42,7 @@ mongoose.connect('mongodb://localhost:27017/basiccrud',  { useNewUrlParser: true
 module.exports = mongoose;
 ```
 
-We will return a mongoose variable that is connected to our database;
+We will return a mongoose variable that is connected to our database.
 
 ## Create Fruits Model
 
@@ -64,7 +66,7 @@ module.exports = Fruit;
 
 ## Have Create Route Create data in MongoDB
 
-Inside server.js:
+Inside `server.js`:
 
 ```javascript
 // Replace the variable fruit with Fruit to show that is a model
@@ -187,7 +189,7 @@ router.put('/:id', (req, res) => {
 ## :fork_and_knife:  One more thing!
 When you create an api, you often want to add a lot of data to test your api, routes etc.
 
-Instead of adding each record in postman its convetional to add a seed route.
+Instead of adding each record in Postman it's conventional to add a seed route.
 
 For us, it might look something like this:
 
@@ -243,7 +245,7 @@ Lets try using a `json` file:
 ]
 ```
 
-Then in your controller import and update your seed route
+In your controller import and update your seed route.
 
 
 ```js
@@ -258,3 +260,11 @@ router.get('/seed', (req, res) => {
 });
 
 ```
+
+<hr>
+<br>
+
+
+# :clap:  :clap:  :clap: :clap: 
+# You made an API!
+# :clap:  :clap:  :clap: :clap: 
