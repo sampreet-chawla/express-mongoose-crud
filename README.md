@@ -131,9 +131,8 @@ router.get('/:id', (req, res) => {
 
 ```javascript
 router.delete('/:id', (req, res) => {
-    Fruit.deleteMany(req.params.id, (err, deletedFruit) => {
-        if (err) console.log(err)
-        else res.send(deletedFruit)
+    Fruit.findByIdAndDelete(req.params.id, (err, deleted) => {
+        res.send(deleted)
     })
 });
 ```
