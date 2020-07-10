@@ -158,7 +158,7 @@ router.put('/:id', (req, res) => {
     } else {
         req.body.readyToEat = false;
     }
-    Fruit.findByIdAndUpdate(req.params.id, req.body, (err, updatedFruit) => {
+    Fruit.findByIdAndUpdate(req.params.id, req.body,{ new: true }, (err, updatedFruit) => {
         if (err) console.log(err)
         else res.send(updatedFruit)
     })
