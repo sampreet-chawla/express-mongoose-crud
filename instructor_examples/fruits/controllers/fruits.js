@@ -1,45 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const Fruit = require('../models/fruits.js');
-
-
-// router.get('/seed', (req, res) => {
-//     Fruit.insertMany([
-//         {
-//             name: 'grapefruit',
-//             color: 'pink',
-//             readyToEat: true
-//         },
-//         {
-//             name: 'grape',
-//             color: 'purple',
-//             readyToEat: false
-//         },
-//         {
-//             name: 'avocado',
-//             color: 'green',
-//             readyToEat: true
-//         }
-//     ], (err, data) => {
-//         if (err) console.log(error)
-//         else res.send(data);
-//     })
-// });
+const fruits = require('../models/fruits');
 
 // index
 router.get('/', (req, res) => {
-    Fruit.find({}, (err, allFruits) => {
-        if (err) console.log(err)
-        else res.send(allFruits)
-    })
+    res.send(fruits);
 });
 
 //show
 router.get('/:id', (req, res) => {
-    Fruit.findById(req.params.id, (err, foundFruit) => {
-        if (err) console.log(err)
-        else res.send(foundFruit)
-    })
+    res.send(fruits[req.params.id]);
 });
 
 // // create
@@ -50,18 +20,15 @@ router.post('/', (req, res) => {
     } else {
         req.body.readyToEat = false;
     }
-    Fruit.create(req.body, (error, createdFruit) => {
-        res.send(createdFruit);
-    });
+    const newData = req.body;
+    fruits.push(newData);
+    res.send(newData);
 });
-
 
 // delete
 router.delete('/:id', (req, res) => {
-    Fruit.deleteMany(req.params.id, (err, deletedFruit) => {
-        if (err) console.log(err)
-        else res.send(deletedFruit)
-    })
+    const deletedFruit = fruits.splice(req.params.id, 1);
+    res.send(deletedFruit);
 });
 
 // update
@@ -72,11 +39,11 @@ router.put('/:id', (req, res) => {
     } else {
         req.body.readyToEat = false;
     }
-    Fruit.findByIdAndUpdate(req.params.id, req.body, (err, updatedFruit) => {
-        if (err) console.log(err)
-        else res.send(updatedFruit)
-    })
+
+    fruits[req.params.id] = req.body;
+    res.send(req.body);
 });
+
 
 
 
