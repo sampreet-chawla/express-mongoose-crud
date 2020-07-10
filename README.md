@@ -285,6 +285,7 @@ Since we are creating an entirely other `model`, we will also create a `controll
 
 <br>
 <hr>
+
 ### Let's start by creating the `Owner` model.
 We want our owner to have a name field that is required and have an array of fruits!
 
