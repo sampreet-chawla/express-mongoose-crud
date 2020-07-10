@@ -196,7 +196,8 @@ For us, it might look something like this:
 
 
 ```javascript
-router.get('/seed', (req, res)=>{
+router.get('/seed', async (req, res)=>{
+    await Fruit.deleteMany({})
     Fruit.create([
         {
             name:'grapefruit',
@@ -253,12 +254,13 @@ In your controller import and update your seed route.
 const seedData = require('../db/seedData.json');
 
 // seed
-router.get('/seed', (req, res) => {
-    Fruit.insertMany(seedData, (err, fruit) => {
+router.get('/seed', async (req, res) => {
+    await Fruit.deleteMany({})
+    Fruit.insertMany(seedData, (err, data) => {
         if (err) console.log(err)
-        else res.send(fruit)
+        else res.send(data)
     })
-});
+})
 
 ```
 
