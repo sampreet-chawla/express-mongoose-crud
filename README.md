@@ -342,7 +342,7 @@ router.post('/', (req, res) => {
 
 ```js
 // controllers
-const ownerController = require('./controllers/owner');
+const ownerController = require('./controllers/owners');
 app.use('/owners', ownerController);
 ```
 
@@ -353,6 +353,12 @@ app.use('/owners', ownerController);
     - We will need both the ID of the User we are looking for and the ID of the Fruit we are looking to push to the Owner model. 
 
     - We can do this in the path for this route!
+
+**Make sure to require the Fruits model in your Owner controller**
+
+```js
+const Fruit = require('../models/fruits');
+```
 
 ```js
 // add fruit to owner
