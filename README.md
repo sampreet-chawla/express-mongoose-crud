@@ -12,7 +12,7 @@
 1. Have Update Route Update data in mongo
 
 
-## Lets go back to your fruits express app!
+## Let's go back to your fruits express app!
 In `student_examples` you will have a copy of the fruits app we started creating earlier this week.
 
 Today, we will be adding Mongoose to our app so that we can make our fruit data persist!
@@ -28,7 +28,7 @@ When we separated out our files into a `models` and a `controllers` directory we
 
 We are going to keep practicing these good habits.
 
-Lets take our mongoose connection and place it in a folder called `db`.
+Let's take our mongoose connection and place it in a folder called `db`.
 
 1. Create a `db` directory
 1. Create a `connection.js` file
@@ -222,7 +222,7 @@ To be even more efficient, we can put this data in a `seedData.js` file or json 
 
 Then we can import this file and use it to create our seed data!
 
-Lets try using a `json` file:
+Let's try using a `json` file:
 
 
 ```json
@@ -267,4 +267,126 @@ router.get('/seed', (req, res) => {
 
 # :clap:  :clap:  :clap: :clap: 
 # You made an API!
+# :clap:  :clap:  :clap: :clap: 
+
+
+<br>
+<hr>
+
+## Nested Models
+
+We aren't finished just yet!
+
+What if we decide that we want a fruit to have an owner. In order to do this, we will need to have another model. We will call this other model `Owner`. 
+
+Since we are creating an entirely other `model`, we will also create a `controller` for this `model`. This will make it easy to find and access all endpoints for this resource. 
+
+<br>
+<hr>
+### Let's start by creating the `Owner` model.
+We want our owner to have a name field that is required and have an array of fruits!
+
+We need the fruits array to reference a fruit that we have created using the `Fruit` model. How do we do this?
+
+```js
+{
+    ref: "Fruit",
+    type: mongoose.Schema.Types.ObjectId
+}
+```
+
+- `mongoose.Schema.Types.ObjectId` is going to allow us to reference another resource using the resources `id`. 
+
+- `ref` will reference the model we are looking to nest within our other model.
+
+In your models directory:
+
+```js
+
+const mongoose = require('../db/connection');
+
+const ownerSchmea = new mongoose.Schema({
+    name: { type: String, required: true },
+    fruits: [
+        {
+            ref: "Fruit",
+            type: mongoose.Schema.Types.ObjectId
+        }
+    ]
+});
+
+const Owner = mongoose.model('Owner', ownerSchmea);
+
+module.exports = Owner;
+```
+<br>
+<hr>
+## Create our Owner controller
+
+1. Start by creating your Create/Post route for an owner
+
+```js
+// add owner
+router.post('/', (req, res) => {
+    Owner.create({ name: req.body.ownerName }, (err, owner) => {
+        if (err) console.log(err)
+        else res.send(owner)
+    })
+});
+```
+<br>
+
+2. Next, create an Update/Put route for the Owner. When we update the Owner we want to push new fruits to its array. 
+
+    - We will need both the ID of the User we are looking for and the ID of the Fruit we are looking to push to the Owner model. 
+
+    - We can do this in the path for this route!
+
+```js
+// add fruit to owner
+router.put('/:ownerId/addFruits/:id', (req, res) => {
+    Fruit.findById(req.params.id, (err, fruit) => {
+        if (err) console.log(err)
+        else {
+            Owner.findByIdAndUpdate(
+                req.params.ownerId,
+                {
+                    $push: {
+                        fruits: fruit.id
+                    }
+                },
+                (err, owner) => {
+                    if (err) console.log(err)
+                    else res.send(owner)
+                }
+            )
+        }
+    })
+});
+```
+
+<br>
+<hr>
+
+## Create an Index route for all Owners that show their nested Fruits
+
+```js
+router.get('/', async (req, res) => {
+    const data = await Owner.find({}).populate('fruits');
+    res.send(data);
+});
+```
+
+- We need to `await` the data that is being returned. We could use a callback but this is a little cleaner! Side note, you can do this for any route!
+
+- `populate`: Population is the process of automatically replacing the specified paths in the document with document(s) from other collection(s). We may populate a single document, multiple documents, a plain object, multiple plain objects, or all objects returned from a query. Let's look at some examples. 
+
+- Finally we send our data to the client!
+
+<br>
+<hr>
+
+# :clap:  :clap:  :clap: :clap: 
+## And there you have it!
+## Nested Models!
 # :clap:  :clap:  :clap: :clap: 
