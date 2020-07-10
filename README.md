@@ -337,6 +337,15 @@ router.post('/', (req, res) => {
     })
 });
 ```
+
+2. Import the controller in your server.js file
+
+```js
+// controllers
+const ownerController = require('./controllers/owner');
+app.use('/owners', ownerController);
+```
+
 <br>
 
 2. Next, create an Update/Put route for the Owner. When we update the Owner we want to push new fruits to its array. 
