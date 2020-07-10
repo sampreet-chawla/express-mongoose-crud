@@ -10,7 +10,9 @@
 1. Have Show Route Show 1 fruit in mongo
 1. Have Delete Route Delete in mongo
 1. Have Update Route Update data in mongo
-
+1. Create a second Model
+1. Create a controller for our second Model
+1. Created data using Related Models
 
 ## Let's go back to your fruits express app!
 In `student_examples` you will have a copy of the fruits app we started creating earlier this week.
@@ -273,7 +275,7 @@ router.get('/seed', (req, res) => {
 <br>
 <hr>
 
-## Nested Models
+## Related Models
 
 We aren't finished just yet!
 
@@ -388,5 +390,5 @@ router.get('/', async (req, res) => {
 
 # :clap:  :clap:  :clap: :clap: 
 ## And there you have it!
-## Nested Models!
+## You related Models
 # :clap:  :clap:  :clap: :clap: 
