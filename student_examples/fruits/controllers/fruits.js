@@ -17,6 +17,27 @@ router.get('/seed', async (req, res) => {
 	res.json({ status: 200, data: fruits });
 });
 
+/*
+router.get('/seed', async (req, res) => {
+	try {
+		const fruits = await seedDB(Fruit, fruitSeed);
+		res.json({
+			status: 200,
+			message: 'ok',
+			seededData: fruits,
+		});
+	} catch (err) {
+		console.log(err);
+		res.json({
+			status: 500,
+			message: err,
+		});
+	} finally {
+		// db.close();
+	}
+});
+*/
+
 // index - returns all things
 router.get('/', async (req, res) => {
 	await Fruit.find({})
