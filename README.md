@@ -184,7 +184,7 @@ router.put('/:id', (req, res) => {
 
 In order to prepare you for the full day mock interviews we have planned in unit 4 take a moment to think about and answer the following questions:
 
-The instructor will provide the :question: questions :question:
+The instructor will provide the questions :question: :question:  :question: :question: 
 
 <!--
 - :question: Describe what MVC is and how have you used it to structure a web server?.
