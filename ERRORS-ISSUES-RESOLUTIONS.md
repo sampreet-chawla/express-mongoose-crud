@@ -28,9 +28,11 @@
 **RESOLUTION:** import fruits.js into server.js<br>
 
 **ERROR:** [nodemon] app crashed - waiting for file changes before starting...<br>
+**ISSUE:**  your making edits and nodemon is restarting before they are complete<br>
 **RESOLUTION:** your edits aren't yet complete or they were bad edits<br>
 
 **ERROR:** Cannot set headers after they are sent to the client<br>
+**ISSUE:**  you are calling res.() more than once in the route<br>
 **RESOLUTION:** you can only call res.json/res.send one time...the server can only respond once to the clients request<br>
 
 
