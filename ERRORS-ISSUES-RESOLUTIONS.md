@@ -12,8 +12,8 @@
 **ERROR:** POST - req.body {}<br>
 **ISSUE #1:**  you didn't include the proper middleware<br>
 ```js
-	app.use(express.urlencoded({extended:false}))<br>
-	app.use(express.json())<br>
+app.use(express.urlencoded({extended:false}))<br>
+app.use(express.json())<br>
 ```
 **RESOLUTION:**  #1 : pick a middle and use it<br>
 **ISSUE  #2:** you place the route before the middleware<br>
