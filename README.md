@@ -84,11 +84,17 @@ const db = mongoose.connection;
 Now we update the `index` route to return all fruits.
 
 ```javascript
+// index - returns all things
 router.get('/', (req, res) => {
-    Fruit.find({}.then((allFruits) => res.json({ status: 200, data: allFruits}))
-		.catch((err) => console.log(err))
-		.finally(() => { db.close()});
-});
+    Fruit.find({})
+        .then((allFruits) =>
+			res.json({
+				status: 200,
+				data: allFruits
+			})
+        ).catch( err => console.log('err', err))
+        .finally(() => db.close())
+})
 ```
 
 ### Test Route Using Postman
