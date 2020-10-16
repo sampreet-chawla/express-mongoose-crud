@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 // create - create a single thing
 router.post('/', async (req, res) => {
     const fruit = await Fruit.create(req.body);
-	res.json({ status: 200, data: fruit})
+    res.json({ status: 200, data: fruit})
 })
 
 // delete - remove a single thing
