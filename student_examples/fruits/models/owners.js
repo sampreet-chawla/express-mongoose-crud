@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ownerSchema = new Schema({
 	name: { type: String, required: true },
-	fruits: [{ ref: 'Fruit', type: Schema.Types.ObjectId }],
+	fruits: [{ ref: 'Fruits', type: Schema.Types.ObjectId }],
 });
 
 const Owner = mongoose.model('Owner', ownerSchema);

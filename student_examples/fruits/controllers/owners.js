@@ -5,6 +5,24 @@ const mongoose = require('../db/connection');
 const Owner = require('../models/owners');
 const Fruit = require('../models/fruit');
 
+router.get('/', async (req, res) => {
+	try {
+		const owner = await Owner.find({}).populate('fruits');
+		res.json({
+			status: 200,
+			data: owner,
+		});
+	} catch (error) {
+		console.log(error);
+		res.json({
+			status: 500,
+			msg: error,
+		});
+	} finally {
+		//db.close();
+	}
+});
+
 router.post('/', async (req, res) => {
 	try {
 		const owner = await Owner.create(req.body);
