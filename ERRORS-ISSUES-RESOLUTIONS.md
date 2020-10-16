@@ -20,7 +20,7 @@
 **RESOLUTION  #2:**  place the middleware above routes<br>
 
 **ERROR:** ReferenceError: Cannot access 'express' before initialization<br>
-**ISSUE:** Express has not been defined before it's been called
+**ISSUE:** Express has not been defined before it's been called<br>
 **RESOLUTION:** put quotes around express in require<br>
 
 **ERROR:** ReferenceError: fruits is not defined<br>
