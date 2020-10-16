@@ -3,16 +3,23 @@ const express = require('express');
 // instantiate a new instance of express.Router
 const router = express.Router();
 // import the 'fruits' seed data
-//const fruits = require('../db/seedData.js.js')
+const seedData = require('../db/seedData.json');
 
 const mongoose = require('../db/connection');
-const Fruits = require('../models/fruit');
 const Fruit = require('../models/fruit');
 const db = mongoose.connection;
 
+// Seed Data
+// Works as it is declared before route "/" or "/:id"
+router.get('/seed', async (req, res) => {
+	await Fruit.deleteMany({});
+	const fruits = await Fruit.insertMany(seedData);
+	res.json({ status: 200, data: fruits });
+});
+
 // index - returns all things
-router.get('/', (req, res) => {
-	Fruit.find({})
+router.get('/', async (req, res) => {
+	await Fruit.find({})
 		.then((allFruits) => {
 			res.json({
 				status: 200,
@@ -27,8 +34,8 @@ router.get('/', (req, res) => {
 });
 
 // show - returns a single thing
-router.get('/:id', (req, res) => {
-	Fruits.findById({ _id: req.params.id })
+router.get('/:id', async (req, res) => {
+	await Fruit.findById({ _id: req.params.id })
 		.then((data) => {
 			res.json({
 				status: 200,
@@ -42,9 +49,9 @@ router.get('/:id', (req, res) => {
 });
 
 // create - create a single thing
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 	const fruit = req.body;
-	Fruit.create(fruit)
+	await Fruit.create(fruit)
 		.then((data) => {
 			res.json({
 				status: 200,
@@ -58,8 +65,8 @@ router.post('/', (req, res) => {
 });
 
 // delete - remove a single thing
-router.delete('/:id', (req, res) => {
-	Fruit.findByIdAndDelete({ _id: req.params.id })
+router.delete('/:id', async (req, res) => {
+	await Fruit.findByIdAndDelete({ _id: req.params.id })
 		.then((data) => {
 			res.json({
 				status: 200,
@@ -73,8 +80,8 @@ router.delete('/:id', (req, res) => {
 });
 
 // put - update a single thing
-router.put('/:id', (req, res) => {
-	Fruit.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
+router.put('/:id', async (req, res) => {
+	await Fruit.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
 		.then((data) => {
 			res.json({
 				status: 200,
