@@ -23,7 +23,7 @@ Today, we will be adding Mongoose to our app so that we can make our fruit data 
 
 Here is our routing table to help guide us along the way
 
-| **URL**     | **HTTP Verb** | **Action** | **Action**             |
+| **URL**     | **HTTP Verb** | **Action** | **Description**             |
 | ----------- | ------------- | -------------- | ---------------------- |
 | /fruits     | GET           |    index            | get all fruits         |
 | /fruits     | POST          |    create            | create a new fruit     |
