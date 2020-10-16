@@ -23,13 +23,13 @@ Today, we will be adding Mongoose to our app so that we can make our fruit data 
 
 Here is our routing table to help guide us along the way
 
-| **URL**     | **HTTP Verb** | **Controller** | **Action**             |
+| **URL**     | **HTTP Verb** | **Action** | **Action**             |
 | ----------- | ------------- | -------------- | ---------------------- |
-| /fruits     | GET           |                | get all fruits         |
-| /fruits     | POST          |                | create a new fruit     |
-| /fruits/:id | GET           |                | get a single fruit     |
-| /fruits/:id | PUT           |                | update a single fruit  |
-| /fruits/:id | DELETE        |                | destroy a single fruit |
+| /fruits     | GET           |    index            | get all fruits         |
+| /fruits     | POST          |    create            | create a new fruit     |
+| /fruits/:id | GET           |    show            | get a single fruit     |
+| /fruits/:id | PUT           |    update            | update a single fruit  |
+| /fruits/:id | DELETE        |    destroy            | destroy a single fruit |
 
 ## Connect Express to Mongo
 
