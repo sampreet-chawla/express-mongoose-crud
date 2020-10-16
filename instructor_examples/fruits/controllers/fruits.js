@@ -2,8 +2,13 @@
 const express = require('express')
 // instantiate a new instance of express.Router
 const router = express.Router()
-// import the 'fruits' model
-// const fruits = require('../db/seedData.js')
+// import the db connection
+const mongoose = require('../db/connection')
+// import the Fruit model
+const Fruit = require('../models/fruit')
+// create the db connection
+const db = mongoose.connection
+
 
 // index - returns all things
 router.get('/', (req, res) => {
