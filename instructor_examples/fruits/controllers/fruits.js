@@ -12,14 +12,15 @@ const db = mongoose.connection
 
 // index - returns all things
 router.get('/', (req, res) => {
+    console.log('get')
     Fruit.find({})
-        .then((allFruits) =>
+        .then((allFruits) => {
+            console.log('yes')
 			res.json({
 				status: 200,
 				data: allFruits
 			})
-        ).catch( err => console.log('err', err))
-        // .finally(() => db.close())
+        }).catch( err => console.log('err', err))
 })
 
 // show - returns a single thing
