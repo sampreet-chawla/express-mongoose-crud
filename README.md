@@ -1,5 +1,4 @@
-# :apple: :grapes: :banana:
-# Fruits App Pt 2 - Express and Mongoose CRUD
+# Express and Mongoose CRUD
 
 ## Lesson Objectives
 
@@ -19,10 +18,22 @@ In `student_examples` you will have a copy of the fruits app we started creating
 
 Today, we will be adding Mongoose to our app so that we can make our fruit data persist!
 
+## Routing Table 
+
+Here is our routing table to help guide us along the way
+
+| **URL** | **HTTP Verb** |  **Controller** | **Action**|
+|------------|-------------|------------|-----------|
+| /fruits       | GET       | |get all fruits  
+| /fruits          | POST      | |create a new fruit     
+| /fruits/:id      | GET       | | get a single fruit     
+| /fruits/:id      | PUT | | update a single fruit   
+| /fruits/:id      | DELETE    | | destroy a single fruit 
+
 
 ## Connect Express to Mongo
 
-1. `npm i mongoose`
+`npm i mongoose`
 
 Whenever we are developing a website or application, we always want to practice [separation of concerns](https://deviq.com/separation-of-concerns/). 
 

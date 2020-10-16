@@ -1,50 +1,54 @@
+// import express
 const express = require('express');
+// instantiate a new instance of express.Router
 const router = express.Router();
-const fruits = require('../models/fruits');
+// import the 'fruits' model
+const fruits = require('../models/fruits.js');
 
-// index
+// index - returns all things
 router.get('/', (req, res) => {
-    res.send(fruits);
+	res.json({
+		status: 200,
+		fruits: fruits,
+	});
 });
 
-//show
-router.get('/:id', (req, res) => {
-    res.send(fruits[req.params.id]);
+// show - returns a single thing
+router.get('/:index', (req, res) => {
+	res.json({
+		status: 200,
+		fruit: fruits[req.params.index],
+	});
 });
 
-// // create
+// create - create a single thing
 router.post('/', (req, res) => {
-    // get data from the user / client
-    if (req.body.readyToEat === "true") {
-        req.body.readyToEat = true;
-    } else {
-        req.body.readyToEat = false;
-    }
-    const newData = req.body;
-    fruits.push(newData);
-    res.send(newData);
+	const fruit = req.body;
+	fruits.push(fruit);
+	res.json({
+		status: 200,
+		msg: 'data received',
+	});
 });
 
-// delete
-router.delete('/:id', (req, res) => {
-    const deletedFruit = fruits.splice(req.params.id, 1);
-    res.send(deletedFruit);
+// delete - remove a single thing
+router.delete('/:index', (req, res) => {
+	fruits.splice(req.params.index, 1);
+	res.json({
+		status: 200,
+		msg: 'item deleted',
+	});
 });
 
-// update
-router.put('/:id', (req, res) => {
-    // get data from the user / client
-    if (req.body.readyToEat === "true") {
-        req.body.readyToEat = true;
-    } else {
-        req.body.readyToEat = false;
-    }
-
-    fruits[req.params.id] = req.body;
-    res.send(req.body);
+// put - update a single thing
+router.put('/:index', (req, res) => {
+	fruits[req.params.index] = req.body;
+	res.json({
+		status: 200,
+		msg: 'item update',
+		fruit: fruits[req.params.index],
+	});
 });
 
-
-
-
+// export router
 module.exports = router;
