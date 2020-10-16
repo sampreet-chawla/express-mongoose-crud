@@ -74,7 +74,7 @@ router.delete('/:id', (req, res) => {
 
 // put - update a single thing
 router.put('/:id', (req, res) => {
-	Fruit.findByIdAndUpdate({ _id: req.params.id }, req.body)
+	Fruit.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
 		.then((data) => {
 			res.json({
 				status: 200,
