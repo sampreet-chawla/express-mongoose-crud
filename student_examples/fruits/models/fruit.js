@@ -5,7 +5,7 @@ const FruitsSchema = new Schema(
 	{
 		name: { type: String, required: true },
 		color: { type: String, required: true },
-		readyToEat: { type: Boolean, required: false },
+		readyToEat: { type: Boolean, default: false },
 	},
 	{ timestamps: true }
 );

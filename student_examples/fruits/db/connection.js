@@ -3,6 +3,7 @@ const mongoURI = 'mongodb://localhost:27017/fruits';
 const config = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useFindAndModify: false,
 };
 
 mongoose.connect(mongoURI, config);
