@@ -3,7 +3,7 @@ const express = require('express')
 // instantiate a new instance of express.Router
 const router = express.Router()
 // import the 'fruits' model
-const fruits = require('../models/fruits.js')
+const fruits = require('../db/seedData.js')
 
 // index - returns all things
 router.get('/', (req, res) => {

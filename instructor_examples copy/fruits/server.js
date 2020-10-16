@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv/types').config()
 const express = require('express')
 const logger = require('morgan')
 const app = express()
