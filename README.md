@@ -44,8 +44,8 @@ Install Mongoose and seed some initial entries.
 Here is what you will need to do:
 
 - install mongoose
-- setup the connection file
-- create a `Schema` and `Model`
+- setup the connection file to the `fruits` collection
+- create a `Schema` and `Model` - `Fruit`
 - setup the `seed.js` file to seed the DB based on the `seedDdata.json` file
 - add startup script to seed the database
 
