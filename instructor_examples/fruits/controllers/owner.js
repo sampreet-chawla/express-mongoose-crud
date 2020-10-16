@@ -8,6 +8,11 @@ const mongoose = require('../db/connection');
 const Owner = require('../models/owner');
 const Fruit = require('../models/fruit')
 
+router.get('/', async (req,res) => {
+    const owner = await Owner.find({}).populate('fruits')
+    res.json({status: 200, data: owner})
+})
+
 router.post('/', async (req, res) => {
     console.log('owner-post', req.body)
     const owner = await Owner.create(req.body)

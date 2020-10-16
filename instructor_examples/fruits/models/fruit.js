@@ -10,7 +10,6 @@ const fruitSchema = new Schema(
 		readyToEat: { type: Boolean, default: false },
 	}
 );
-
 // CREATE THE MODEL AND ASSOCIATE IT WITH A SCHEMA
 const Fruit = mongoose.model('Fruit', fruitSchema);
 // EXPORT THE MODEL
