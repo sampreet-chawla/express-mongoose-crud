@@ -34,30 +34,36 @@ router.get('/:id', (req, res) => {
 // create - create a single thing
 router.post('/', (req, res) => {
     const fruit = req.body
-    fruits.push(fruit)
-    res.json({
-        status: 200,
-        msg: 'data received'
-    })
+    console.log('post - fruit', fruit)
+    Fruit.create(fruit)
+        .then((fruit) =>
+			res.json({
+				status: 200,
+				data: fruit
+			})
+		);
 })
 
 // delete - remove a single thing
-router.delete('/:index', (req, res) => {
-    fruits.splice(req.params.index, 1)
-     res.json({
-        status: 200,
-        msg: 'item deleted',
-	 });
+router.delete('/:id', (req, res) => {
+     Fruit.findByIdAndDelete(req.params.id)
+        .then( fruit =>  res.json({
+            status: 200,
+            msg: 'item deleted',
+        }))
 })
 
 // put - update a single thing
-router.put('/:index', (req, res) => {
-    fruits[req.params.index] = req.body
-     res.json({
-        status: 200,
-        msg: 'item update',
-        fruit: fruits[req.params.index],
-    });
+router.put('/:id', (req, res) => {
+     Fruit.findByIdAndUpdate(req.params.id, req.body, { new: true })
+     .then(
+        (fruit) =>
+            res.json({
+                status: 200,
+                msg: 'item update',
+                data: fruit
+            })
+    );
 })
 
 // export router
