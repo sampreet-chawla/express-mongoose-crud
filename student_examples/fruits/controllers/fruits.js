@@ -6,23 +6,39 @@ const router = express.Router();
 //const fruits = require('../db/seedData.js.js')
 
 const mongoose = require('../db/connection');
+const Fruits = require('../models/fruit');
 const Fruit = require('../models/fruit');
 const db = mongoose.connection;
 
 // index - returns all things
 router.get('/', (req, res) => {
-	res.json({
-		status: 200,
-		fruits: fruits,
-	});
+	Fruit.find({})
+		.then((allFruits) => {
+			res.json({
+				status: 200,
+				data: allFruits,
+			});
+		})
+		.catch((error) => {
+			console.log('Error getting data:', error);
+			res.json({ status: 500, msg: `Error getting data: ${error}` });
+		});
+	// .finally(() => db.close());
 });
 
 // show - returns a single thing
-router.get('/:index', (req, res) => {
-	res.json({
-		status: 200,
-		fruit: fruits[req.params.index],
-	});
+router.get('/:id', (req, res) => {
+	Fruits.findById({ _id: req.params.id })
+		.then((data) => {
+			res.json({
+				status: 200,
+				fruit: data,
+			});
+		})
+		.catch((error) => {
+			console.log('Error getting data:', error);
+			res.json({ status: 500, msg: `Error getting data: ${error}` });
+		});
 });
 
 // create - create a single thing
