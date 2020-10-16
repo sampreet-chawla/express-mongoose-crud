@@ -44,30 +44,48 @@ router.get('/:id', (req, res) => {
 // create - create a single thing
 router.post('/', (req, res) => {
 	const fruit = req.body;
-	fruits.push(fruit);
-	res.json({
-		status: 200,
-		msg: 'data received',
-	});
+	Fruit.create(fruit)
+		.then((data) => {
+			res.json({
+				status: 200,
+				data: data,
+			});
+		})
+		.catch((error) => {
+			console.log('Error getting data:', error);
+			res.json({ status: 500, msg: `Error creating data: ${error}` });
+		});
 });
 
 // delete - remove a single thing
-router.delete('/:index', (req, res) => {
-	fruits.splice(req.params.index, 1);
-	res.json({
-		status: 200,
-		msg: 'item deleted',
-	});
+router.delete('/:id', (req, res) => {
+	Fruit.findByIdAndDelete({ _id: req.params.id })
+		.then((data) => {
+			res.json({
+				status: 200,
+				msg: 'item deleted',
+			});
+		})
+		.catch((error) => {
+			console.log('Error getting data:', error);
+			res.json({ status: 500, msg: `Error deleting data: ${error}` });
+		});
 });
 
 // put - update a single thing
-router.put('/:index', (req, res) => {
-	fruits[req.params.index] = req.body;
-	res.json({
-		status: 200,
-		msg: 'item update',
-		fruit: fruits[req.params.index],
-	});
+router.put('/:id', (req, res) => {
+	Fruit.findByIdAndUpdate({ _id: req.params.id }, req.body)
+		.then((data) => {
+			res.json({
+				status: 200,
+				msg: 'item update',
+				fruit: data,
+			});
+		})
+		.catch((error) => {
+			console.log('Error getting data:', error);
+			res.json({ status: 500, msg: `Error updating data: ${error}` });
+		});
 });
 
 // export router
