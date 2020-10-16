@@ -12,18 +12,23 @@ const db = mongoose.connection
 
 // index - returns all things
 router.get('/', (req, res) => {
-    res.json({
-        status: 200,
-        fruits: fruits
-    })
+    Fruit.find({})
+        .then((allFruits) =>
+			res.json({
+				status: 200,
+				data: allFruits
+			})
+        ).catch( err => console.log('err', err))
+        // .finally(() => db.close())
 })
 
 // show - returns a single thing
-router.get('/:index', (req, res) => {
-   res.json({
+router.get('/:id', (req, res) => {
+   Fruit.findById(req.params.id)
+    .then( fruit => res.json({
 			status: 200,
-			fruit: fruits[req.params.index], 
-		});
+			data: fruit
+	}))
 })
 
 // create - create a single thing
