@@ -7,7 +7,9 @@
 **ISSUE:** that route doesn't exist <br>
 **RESOLUTION:** that route deosn't exist on the server<br>
 
-
+**ERROR:** requires a middleware function but got a ' + gettype(fn))
+**ISSUE:** the module wasn't exported
+**RESOLUTION:**  call module.exports = router
 
 **ERROR:** POST - req.body {}<br>
 **ISSUE #1:**  you didn't include the proper middleware<br>
@@ -34,5 +36,3 @@ app.use(express.json())<br>
 **ERROR:** Cannot set headers after they are sent to the client<br>
 **ISSUE:**  you are calling res.() more than once in the route<br>
 **RESOLUTION:** you can only call res.json/res.send one time...the server can only respond once to the clients request<br>
-
-

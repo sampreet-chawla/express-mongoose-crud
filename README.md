@@ -93,7 +93,6 @@ router.get('/', (req, res) => {
 				data: allFruits
 			})
         ).catch( err => console.log('err', err))
-        .finally(() => db.close())
 })
 ```
 
@@ -112,7 +111,6 @@ router.get('/:id', (req, res) => {
     Fruit.findById(req.params.id)
         .then((fruit) => res.json({ status: 200, data: fruit }))
 		.catch((err) => console.log(err))
-		.finally(() => { db.close()});
 });
 ```
 
@@ -152,7 +150,6 @@ router.delete('/:id', (req, res) => {
     Fruit.findByIdAndDelete(req.params.id)
        .then((fruit) => res.json({ status: 200, data: fruit }) )
 	   .catch((err) => console.log(err))
-	   .finally(() => { db.close()});
 });
 ```
 
@@ -169,7 +166,6 @@ router.put('/:id', (req, res) => {
 	Fruit.findByIdAndUpdate( req.params.id, req.body,{ new: true })
         .then((fruit) => res.json({ status: 200  data: fruit }) )
 		.catch((err) => console.log(err))
-		.finally(() => { db.close()});
 	);
 });
 ```
@@ -224,7 +220,6 @@ router.get('/seed', async (req, res) => {
     await Fruit.deleteMany({})
     const fruits = await  Fruit.insertMany(seedData)
     res.json({ status: 200, data: fruits }))
-    db.close())
 })
 ```
 
@@ -385,7 +380,6 @@ router.get('/', async (req, res) => {
 		status: 200,
 		data: data,
 	});
-	db.close();
 });
 ```
 
